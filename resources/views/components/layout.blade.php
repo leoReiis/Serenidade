@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-100">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="h-full">
     <!--
   This example requires updating your template:
 
@@ -30,13 +30,9 @@
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                                <a href="/"
-                                    class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-                                    aria-current="page">Home</a>
-                                <a href="/sepultado"
-                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sepultado</a>
-                                <a href="/jazigo"
-                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Jazigo</a>
+                                <x-nav-link href='/' :active="request()->is('/')"> Home</x-nav-link>
+                                <x-nav-link href='/sepultado' :active="request()->is('sepultado')"> Sepultado</x-nav-link>
+                                <x-nav-link href='/jazigo' :active="request()->is('jazigo')"> Jazigo</x-nav-link>
                             </div>
                         </div>
                     </div>
@@ -48,8 +44,9 @@
                                 <span class="sr-only">View notifications</span>
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" aria-hidden="true" data-slot="icon">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d=" M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6
+                                    6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714
+                                    0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                                 </svg>
                             </button>
 
@@ -96,12 +93,9 @@
             <div class="md:hidden" id="mobile-menu">
                 <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                    <a href="/" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
-                        aria-current="page">Home</a>
-                    <a href="/sepultado"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sepultado</a>
-                    <a href="/jazigo"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Jazigo</a>
+                    <x-nav-link href='/' :active="request()->is('/')"> Home</x-nav-link>
+                    <x-nav-link href='/sepultado' :active="request()->is('sepultado')"> Sepultado</x-nav-link>
+                    <x-nav-link href='/jazigo' :active="request()->is('jazigo')"> Jazigo</x-nav-link>
                 </div>
                 <div class="border-t border-gray-700 pb-3 pt-4">
                     <div class="flex items-center px-5">
