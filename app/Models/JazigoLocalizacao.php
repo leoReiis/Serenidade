@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class jazigo_localizacao extends Model
+class JazigoLocalizacao extends Model
 {
+    protected $table = 'jazigo_localizacao';
     protected $fillable  = ['localizacao'];
 }

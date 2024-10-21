@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class aux_jazigo_tamanho extends Model
+class AuxJazigoTamanho extends Model
 {
+    protected $table = 'jazigo_tamanho';
     protected $fillable  = ['tamanho'];
 }
