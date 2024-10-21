@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); 
             $table->unsignedBigInteger('id_localizacao');
             $table->unsignedBigInteger('id_tamanho');
-            $table->unsignedBigInteger('id_sepultado');
+            $table->unsignedBigInteger('id_sepultado')->unique();
             $table->enum('status', ['disponível', 'ocupado', 'reservado']);
             $table->timestamps(); 
 
