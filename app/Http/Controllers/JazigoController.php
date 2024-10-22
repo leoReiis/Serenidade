@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jazigo;
 use Illuminate\Http\Request;
 
 class JazigoController extends Controller
@@ -11,7 +12,7 @@ class JazigoController extends Controller
      */
     public function index()
     {
-        return 'non terrea plus ultra';
+        return Jazigo::all();
     }
 
     /**
@@ -19,7 +20,7 @@ class JazigoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -27,7 +28,7 @@ class JazigoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Jazigo::create($request->all());
     }
 
     /**
@@ -35,7 +36,7 @@ class JazigoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Jazigo::find($id);
     }
 
     /**
@@ -49,16 +50,18 @@ class JazigoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Jazigo $jazigo)
     {
-        //
+        $jazigo->update($request->all());
+        return $jazigo;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Jazigo $jazigo)
     {
-        //
+        $jazigo->delete();
+        return ['msg' => 'O jazigo foi excluido com sucesso!'];
     }
 }
