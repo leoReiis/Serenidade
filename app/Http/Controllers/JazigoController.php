@@ -42,7 +42,7 @@ class JazigoController extends Controller
      */
     public function show(string $id)
     {
-        return $this->jazigo->find($id);
+        return $this->jazigo->find($id) ?? ['erro' => 'Recurso pesquisado não existe'];
     }
 
     /**
@@ -59,6 +59,9 @@ class JazigoController extends Controller
     public function update(Request $request, string $id)
     {
         $jazigo = $this->jazigo->find($id); 
+        if(is_null($jazigo)) {
+            return ['erro' => 'Não foi possível atualizar. O recurso solicitado não existe.'];
+        }
         return $jazigo->update($request->all());
     }
 
@@ -68,8 +71,11 @@ class JazigoController extends Controller
     public function destroy(string $id)
     {
         $jazigo = $this->jazigo->find($id);
+        if(is_null($jazigo)) {
+            return ['erro' => 'Não foi possível excluir. O recurso solicitado não existe.'];
+        }
         $jazigo->delete();
 
-        return ['msg' => 'O jazigo foi excluido com sucesso!'];
+        return ['resposa' => 'O jazigo foi excluido com sucesso!'];
     }
 }
