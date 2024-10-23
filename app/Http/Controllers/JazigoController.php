@@ -34,7 +34,8 @@ class JazigoController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->jazigo->create($request->all());
+        $jazigo = $this->jazigo->create($request->all());
+        return response()->json($jazigo, 201);
     }
 
     /**
@@ -42,7 +43,11 @@ class JazigoController extends Controller
      */
     public function show(string $id)
     {
-        return $this->jazigo->find($id) ?? ['erro' => 'Recurso pesquisado não existe'];
+        $jazigo = $this->jazigo->find($id);
+        if(is_null($jazigo)) {
+            return response()->json(['erro' => 'Recurso pesquisado não existe'], 404);
+        }
+        return $jazigo;
     }
 
     /**
@@ -60,22 +65,22 @@ class JazigoController extends Controller
     {
         $jazigo = $this->jazigo->find($id); 
         if(is_null($jazigo)) {
-            return ['erro' => 'Não foi possível atualizar. O recurso solicitado não existe.'];
+            return response()->json(['erro' => 'Não foi possível atualizar. O recurso solicitado não existe.'], 404);
         }
         return $jazigo->update($request->all());
     }
 
-    /**
+     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         $jazigo = $this->jazigo->find($id);
         if(is_null($jazigo)) {
-            return ['erro' => 'Não foi possível excluir. O recurso solicitado não existe.'];
+            return response()->json(['erro' => 'Não foi possível excluir. O recurso solicitado não existe.'], 404);
         }
         $jazigo->delete();
 
-        return ['resposa' => 'O jazigo foi excluido com sucesso!'];
+        return response()->json(['resposa' => 'O jazigo foi excluido com sucesso!']);
     }
 }
