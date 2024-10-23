@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 
 class JazigoController extends Controller
 {
+    protected $jazigo;
+
+    public function __construct(Jazigo $jazigo)
+    {
+       $this->jazigo = $jazigo; 
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Jazigo::all();
+        return $this->jazigo->all();    
     }
 
     /**
@@ -28,7 +34,7 @@ class JazigoController extends Controller
      */
     public function store(Request $request)
     {
-        return Jazigo::create($request->all());
+        return $this->jazigo->create($request->all());
     }
 
     /**
@@ -36,7 +42,7 @@ class JazigoController extends Controller
      */
     public function show(string $id)
     {
-        return Jazigo::find($id);
+        return $this->jazigo->find($id);
     }
 
     /**
@@ -50,18 +56,20 @@ class JazigoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Jazigo $jazigo)
+    public function update(Request $request, string $id)
     {
-        $jazigo->update($request->all());
-        return $jazigo;
+        $jazigo = $this->jazigo->find($id); 
+        return $jazigo->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jazigo $jazigo)
+    public function destroy(string $id)
     {
+        $jazigo = $this->jazigo->find($id);
         $jazigo->delete();
+
         return ['msg' => 'O jazigo foi excluido com sucesso!'];
     }
 }
