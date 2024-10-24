@@ -34,6 +34,12 @@ class JazigoController extends Controller
      */
     public function store(Request $request)
     {
+        $regras   = ['id_sepultado' => 'required|unique:jazigo'];
+        $feedback = ['required' => 'O campo:attribute é obrigatório.'];
+        $request->validate($regras, $feedback);
+
+        // stateless -> cada requisição deve ser única [Header Accept - application/json]
+
         $jazigo = $this->jazigo->create($request->all());
         return response()->json($jazigo, 201);
     }
